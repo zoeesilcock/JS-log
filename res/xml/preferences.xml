@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/title_main_preferences">
+        <CheckBoxPreference
+                android:key="notification_preference"
+                android:title="@string/notification_preference" 
+                android:persistent="true" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/title_other_preferences">
+		<PreferenceScreen android:title="@string/title_about_preference">
+			<intent android:action="com.zoeetrope.jslog.ABOUT_JSLOG" />
+		</PreferenceScreen>
+    </PreferenceCategory>     
+    
+</PreferenceScreen>

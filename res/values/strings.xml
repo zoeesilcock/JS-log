@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, Settings!</string>
+    <string name="app_name">JS Log</string>
+    <string name="title_main_preferences">Preferences</string>
+    <string name="notification_preference">Enable notifications</string>
+    <string name="title_other_preferences">Other</string>
+    <string name="title_about_preference">About JS Log</string>
+    <string name="title_about">About JS Log</string>
+    <string name="version_about">Version: </string>
+    <string name="content_about">A simple way to debug JavaScript code directly on your device as opposed to using USB debuggin mode. This application is open-source. Please visit my website to see the source code or if you have any suggestions or problems.</string>
+    <string name="url_about">http://zoeetrope.com/</string>
+    
+</resources>
