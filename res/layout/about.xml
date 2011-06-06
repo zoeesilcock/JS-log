@@ -32,5 +32,5 @@
 		android:text="@string/url_about" 
 		android:gravity="center_horizontal">
 	</TextView>
-	
+	<ImageView android:id="@+id/imageView1" android:layout_height="wrap_content" android:layout_width="wrap_content" android:scaleType="fitCenter" android:src="@drawable/icon512"></ImageView>
 </TableLayout>
