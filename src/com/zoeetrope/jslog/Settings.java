@@ -32,7 +32,7 @@ public class Settings extends PreferenceActivity  {
 			@Override
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
 				if((Boolean) newValue) {
-		           	Settings.serviceIntent = new Intent(Settings.this, NotificationService.class);
+					Settings.serviceIntent = new Intent(Settings.this, NotificationService.class);
 		           	startService(Settings.serviceIntent);
 				} else {
 					stopService(Settings.serviceIntent);

@@ -38,13 +38,24 @@ public class NotificationService extends Service {
 		String ns = Context.NOTIFICATION_SERVICE;
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
 		
-		long when = System.currentTimeMillis();
+		long now = System.currentTimeMillis();
 		Context context = getApplicationContext();
 		
-		Intent notificationIntent = new Intent(this, NotificationService.class);
-		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-		Notification notification = new Notification(item.getIcon(), item.getTitle(), when);
-		notification.setLatestEventInfo(context, item.getTitle(), item.getContent(), contentIntent);
+		// Prepare the details view.
+		Intent notificationIntent = new Intent(this, Details.class);
+		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		notificationIntent.setAction("JSLogItem" + System.currentTimeMillis());
+		notificationIntent.putExtra("jslog.itemId", item.getId());
+		notificationIntent.putExtra("jslog.itemMessage", item.getMessage());
+		notificationIntent.putExtra("jslog.itemLocation", item.getLocation());
+		notificationIntent.putExtra("jslog.itemIcon", item.getIcon());
+		
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, 
+				notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+		
+		Notification notification = new Notification(item.getIcon(), item.getMessage(), now);
+		notification.setLatestEventInfo(context, item.getMessage(), item.getLocation(), contentIntent);
+		
 		mNotificationManager.notify(item.getId(), notification);
 	}
 

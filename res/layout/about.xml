@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content" android:layout_height="fill_parent" android:id="@+id/tableLayout1" android:layout_gravity="center" android:padding="20dip" android:paddingBottom="20dip">
-	<TextView android:id="@+id/title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/title_about" android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
-	<TextView android:id="@+id/content" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/content_about" android:layout_marginBottom="20dip" android:layout_marginTop="20dip"></TextView>
-	<TextView android:id="@+id/url" android:layout_width="wrap_content" android:layout_height="wrap_content" android:autoLink="web" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/url_about" android:gravity="center_horizontal"></TextView>
+<TableLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:layout_width="wrap_content" 
+	android:layout_height="fill_parent" 
+	android:id="@+id/tableLayout1" 
+	android:layout_gravity="center" 
+	android:padding="20dip" 
+	android:paddingBottom="20dip">
+	
+	<TextView 
+		android:id="@+id/title" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:text="@string/title_about" 
+		android:textAppearance="?android:attr/textAppearanceLarge">
+	</TextView>
+	<TextView 
+		android:id="@+id/content" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:text="@string/content_about" 
+		android:layout_marginBottom="20dip" 
+		android:layout_marginTop="20dip">
+	</TextView>
+	<TextView 
+		android:id="@+id/url" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:autoLink="web" 
+		android:textAppearance="?android:attr/textAppearanceLarge" 
+		android:text="@string/url_about" 
+		android:gravity="center_horizontal">
+	</TextView>
+	
 </TableLayout>

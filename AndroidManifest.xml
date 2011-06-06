@@ -12,10 +12,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".JSLogService" android:enabled="true"></service>
+        <service android:name=".NotificationService" android:enabled="true"></service>
         <activity android:name="About">
         	<intent-filter>
         		<action android:name="com.zoeetrope.jslog.ABOUT_JSLOG" />
+        		<category android:name="android.intent.category.DEFAULT" />
+        	</intent-filter>
+        </activity>
+        <activity android:name="Details">
+        	<intent-filter>
+        		<action android:name="com.zoeetrope.jslog.DETAILS" />
         		<category android:name="android.intent.category.DEFAULT" />
         	</intent-filter>
         </activity>

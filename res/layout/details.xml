@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:padding="6dip">
+  
+    <ImageView 
+    	android:id="@+id/icon" 
+    	android:src="@drawable/info" 
+    	android:layout_height="wrap_content" 
+    	android:layout_width="wrap_content"
+    	android:layout_alignParentTop="true"
+        android:layout_marginRight="6dip">
+    </ImageView>
+    <TextView 
+    	android:id="@+id/message" 
+    	android:text="Message" 
+    	android:layout_toRightOf="@+id/icon"
+    	android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content" 
+    	android:textAppearance="?android:attr/textAppearanceLarge">
+    </TextView>
+	<TextView 
+		android:id="@+id/location" 
+		android:text="Location" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/message">
+	</TextView>
+	
+	<RelativeLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true">
+	
+		<Button 
+			android:id="@+id/close"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content" 
+			android:text="@string/close_detail" 
+			android:layout_alignParentLeft="true" 
+			android:layout_below="@+id/location">
+		</Button>
+		<Button 
+			android:id="@+id/remove"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content" 
+			android:text="@string/remove_detail" 
+			android:layout_alignParentLeft="true" 
+			android:layout_below="@+id/close">
+		</Button>
+		<Button 
+			android:id="@+id/settings"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content" 
+			android:text="@string/settings_detail" 
+			android:layout_alignParentLeft="true" 
+			android:layout_below="@+id/remove">
+		</Button>
+		
+	</RelativeLayout>
+	
+</RelativeLayout>

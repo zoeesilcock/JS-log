@@ -4,15 +4,15 @@ public class JSLogItem {
 
 	private int id;
 	private int icon;
-	private String title;
-	private String content;
+	private String message;
+	private String location;
 	private boolean displayed = false;
 	
-	public JSLogItem(int id, int icon, String title, String content) {
+	public JSLogItem(int id, int icon, String message, String location) {
 		this.id = id;
 		this.icon = icon;
-		this.title = title;
-		this.content = content;
+		this.message = message;
+		this.location = location;
 	}
 	
 	public int getId() {
@@ -23,12 +23,12 @@ public class JSLogItem {
 		return this.icon;
 	}
 
-	public String getTitle() {
-		return this.title;
+	public String getMessage() {
+		return this.message;
 	}
 
-	public String getContent() {
-		return this.content;
+	public String getLocation() {
+		return this.location;
 	}
 	
 	public boolean isDisplayed() {
