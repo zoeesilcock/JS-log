@@ -2,6 +2,7 @@
 <resources>
     <string name="hello">Hello World, Settings!</string>
     <string name="app_name">JS Log</string>
+    <string name="app_description">Displays JavaScript console messages in the notification bar.</string>
     <string name="title_main_preferences">Preferences</string>
     <string name="notification_preference">Enable notifications</string>
     <string name="title_other_preferences">Other</string>
@@ -13,5 +14,4 @@
     <string name="close_detail">Close</string>
     <string name="remove_detail">Remove</string>
     <string name="settings_detail">Settings</string>
-    
 </resources>
