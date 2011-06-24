@@ -32,6 +32,7 @@ import android.os.IBinder;
 public class NotificationService extends Service {
 	
 	ScheduledThreadPoolExecutor schedule;
+	NotificationManager mNotificationManager;
 	
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -41,6 +42,9 @@ public class NotificationService extends Service {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		
+		String ns = Context.NOTIFICATION_SERVICE;
+		mNotificationManager = (NotificationManager) getSystemService(ns);
 	}
 	
 	@Override
@@ -49,20 +53,31 @@ public class NotificationService extends Service {
 		this.schedule = new ScheduledThreadPoolExecutor(5);
 		this.schedule.scheduleAtFixedRate(new LogExtractor(this), 0, 1, TimeUnit.SECONDS);
 		
+		// Let the user know that the service has started.
+		Notification notification = new Notification(R.drawable.icon, 
+				getText(R.string.service_started), System.currentTimeMillis());
+		
+		// Tapping the ongoing notification leads to the settings view.
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                new Intent(this, Settings.class), 0);
+		
+		notification.setLatestEventInfo(this, getText(R.string.service_running),
+				getText(R.string.service_description), contentIntent);
+		
+		// Make the service ongoing to avoid getting killed.
+		startForeground(-1, notification);
+		
 		return START_STICKY;
 	}
 	
 	public void displayItem(JSLogItem item) {
-		String ns = Context.NOTIFICATION_SERVICE;
-		NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
-		
 		long now = System.currentTimeMillis();
 		Context context = getApplicationContext();
 		
 		// Prepare the details view.
 		Intent notificationIntent = new Intent(this, Details.class);
 		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		notificationIntent.setAction("JSLogItem" + System.currentTimeMillis());
+		notificationIntent.setAction("JSLogItem" + now);
 		notificationIntent.putExtra("jslog.itemId", item.getId());
 		notificationIntent.putExtra("jslog.itemMessage", item.getMessage());
 		notificationIntent.putExtra("jslog.itemLocation", item.getLocation());

@@ -14,4 +14,7 @@
     <string name="close_detail">Close</string>
     <string name="remove_detail">Remove</string>
     <string name="settings_detail">Settings</string>
+    <string name="service_started">JS Log started.</string>
+    <string name="service_running">JS Log is running.</string>
+    <string name="service_description">Tap here to change the settings.</string>
 </resources>
