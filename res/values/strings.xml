@@ -17,4 +17,7 @@
     <string name="service_started">JS Log started.</string>
     <string name="service_running">JS Log is running.</string>
     <string name="service_description">Tap here to change the settings.</string>
+    <string name="line_prefix">Line: </string>
+    <string name="line_of"> of </string>
+    <string name="line_unknown">unknown</string>
 </resources>

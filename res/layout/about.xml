@@ -6,7 +6,8 @@
 	android:id="@+id/tableLayout1" 
 	android:layout_gravity="center" 
 	android:padding="20dip" 
-	android:paddingBottom="20dip">
+	android:paddingBottom="20dip"
+	android:background="#333">
 	
 	<TextView 
 		android:id="@+id/title" 

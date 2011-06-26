@@ -28,37 +28,51 @@ public class LogExtractor implements Runnable {
 	
 	private NotificationService service;
 	private int id = 0;
+	private boolean running;
 	
 	public LogExtractor(NotificationService service) {
 		this.service = service;
-		
-		try {
-			// Clear the logcat so we don't display any old entries.
-			Runtime.getRuntime().exec("logcat -c");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	@Override
 	public void run() {
-		extractFromLog();
+		if(running) {
+			extractFromLog();
+		}
+	}
+	
+	public void start() {
+		try {
+			// Clear the logcat so we don't display any old entries.
+			Process p = Runtime.getRuntime().exec("logcat -c");
+			p.waitFor();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		this.running = true;
+	}
+	
+	public void stop() {
+		this.running = false;
 	}
 	
 	private void extractFromLog() {
 		String line = "";
+		String location = "";
 
 		try {
 			// Exctract any new entries from the logcat.
 			Process process = Runtime.getRuntime().exec("logcat -d browser:V *:S");
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-			
-			// Clear the extracted entries from the list.
-			Runtime.getRuntime().exec("logcat -c");
+			BufferedReader bufferedReader = new BufferedReader(
+					new InputStreamReader(process.getInputStream()), 8192);
+			process.waitFor();
 			
             while ((line = bufferedReader.readLine()) != null){
             	// This regex splits the line up into it's component parts.
-            	Pattern pattern = Pattern.compile("./browser \\(.*\\): Console: (.*) (http.*):(.*)");
+            	Pattern pattern = Pattern.compile("./browser \\(.*\\): Console: (.*) (http.*|):(.*)");
             	Matcher matcher = pattern.matcher(line);
             	int icon = R.drawable.info;
             	
@@ -71,14 +85,27 @@ public class LogExtractor implements Runnable {
 	        		}
             		
             		// Build the JSLogItem with the data extracted from the line.
-            		JSLogItem item = new JSLogItem(this.id, icon, matcher.group(1), 
-            				"Line: " + matcher.group(3) + " of " + matcher.group(2));
+            		location = service.getText(R.string.line_prefix).toString() + " ";
+            		if(matcher.group(2).length() > 0) {
+            			location += matcher.group(3) + " " +
+            				service.getText(R.string.line_of).toString() + " " +
+            				matcher.group(2);
+            		} else {
+            			location += service.getText(R.string.line_unknown).toString();
+            		}
+            		JSLogItem item = new JSLogItem(this.id, icon, matcher.group(1), location);
 	            	service.displayItem(item);
 	        		
 	        		this.id++;
         		}
             }
+            
+            // Clear the extracted entries from the list.
+			process = Runtime.getRuntime().exec("logcat -c");
+			process.waitFor();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}

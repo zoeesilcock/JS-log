@@ -29,8 +29,6 @@ import android.preference.PreferenceManager;
 
 public class Settings extends PreferenceActivity  {
 	
-	public static Intent serviceIntent;
-	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +38,10 @@ public class Settings extends PreferenceActivity  {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         boolean enableNotifications = settings.getBoolean("notification_preference", false);
         
+        Intent serviceIntent = new Intent(NotificationService.ACTION_START);
+        serviceIntent.setClass(Settings.this, NotificationService.class);
         if(enableNotifications) {
-	       	Settings.serviceIntent = new Intent(Settings.this, NotificationService.class);
-	       	startService(Settings.serviceIntent);
+	       	startService(serviceIntent);
         }
         
         CheckBoxPreference notificationPreference = (CheckBoxPreference) findPreference("notification_preference");
@@ -50,10 +49,13 @@ public class Settings extends PreferenceActivity  {
 			@Override
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
 				if((Boolean) newValue) {
-					Settings.serviceIntent = new Intent(Settings.this, NotificationService.class);
-		           	startService(Settings.serviceIntent);
+					Intent serviceIntent = new Intent(NotificationService.ACTION_START);
+					serviceIntent.setClass(Settings.this, NotificationService.class);
+		           	startService(serviceIntent);
 				} else {
-					stopService(Settings.serviceIntent);
+					Intent serviceIntent = new Intent(NotificationService.ACTION_STOP);
+					serviceIntent.setClass(Settings.this, NotificationService.class);
+		            startService(serviceIntent);
 				}
 				
 				return true;
