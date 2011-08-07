@@ -57,26 +57,28 @@ public class NotificationService extends Service {
 	
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		if (ACTION_STOP.equals(intent.getAction())) {
-			extractor.stop();
-			stopForeground(true);
-		} else if (ACTION_START.equals(intent.getAction())) {
-			// Schedule the extractor to run once a second.
-			extractor.start();
-			
-			// Let the user know that the service has started.
-			Notification notification = new Notification(R.drawable.icon, 
-					getText(R.string.service_started), System.currentTimeMillis());
-			
-			// Tapping the ongoing notification leads to the settings view.
-			PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-	                new Intent(this, Settings.class), 0);
-			
-			notification.setLatestEventInfo(this, getText(R.string.service_running),
-					getText(R.string.service_description), contentIntent);
-			
-			// Make the service ongoing to avoid getting killed.
-			startForeground(-1, notification);
+		if(intent != null) {
+			if (ACTION_STOP.equals(intent.getAction())) {
+				extractor.stop();
+				stopForeground(true);
+			} else if (ACTION_START.equals(intent.getAction())) {
+				// Schedule the extractor to run once a second.
+				extractor.start();
+				
+				// Let the user know that the service has started.
+				Notification notification = new Notification(R.drawable.icon, 
+						getText(R.string.service_started), System.currentTimeMillis());
+				
+				// Tapping the ongoing notification leads to the settings view.
+				PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+		                new Intent(this, Settings.class), 0);
+				
+				notification.setLatestEventInfo(this, getText(R.string.service_running),
+						getText(R.string.service_description), contentIntent);
+				
+				// Make the service ongoing to avoid getting killed.
+				startForeground(-1, notification);
+			}
 		}
 		
 		return START_STICKY;
