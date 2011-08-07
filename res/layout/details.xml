@@ -2,9 +2,7 @@
 <RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:padding="6dip"
-	android:background="#333">
+	android:layout_height="fill_parent">
   
     <ImageView 
     	android:id="@+id/icon" 
@@ -12,31 +10,26 @@
     	android:layout_height="wrap_content" 
     	android:layout_width="wrap_content" 
     	android:layout_alignParentTop="true" 
-        android:layout_marginRight="6dip">
+        android:layout_margin="6dip">
     </ImageView>
     <TextView 
-    	android:id="@+id/message" 
-    	android:text="Message" 
-    	android:layout_toRightOf="@+id/icon"
-    	android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-    	android:layout_width="fill_parent" 
-    	android:layout_height="wrap_content" 
-    	android:textAppearance="?android:attr/textAppearanceLarge">
-    </TextView>
-	<TextView 
 		android:id="@+id/location" 
 		android:text="Location" 
+		android:layout_toRightOf="@+id/icon"
 		android:layout_width="wrap_content" 
 		android:layout_height="wrap_content"
-		android:layout_below="@+id/message">
+		android:layout_below="@+id/message"
+		android:layout_margin="6dip">
 	</TextView>
 	
 	<RelativeLayout
+		android:id="@+id/buttons" 
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true">
+		android:layout_alignParentBottom="true"
+		android:background="@android:drawable/bottom_bar"
+		android:padding="6dip">
 	
 		<Button 
 			android:id="@+id/close"
@@ -64,5 +57,24 @@
 		</Button>
 		
 	</RelativeLayout>
+	
+    <ScrollView 
+    	android:id="@+id/messageScroll" 
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:fillViewport="true"
+    	android:layout_above="@+id/buttons"
+    	android:layout_below="@+id/location"
+    	android:layout_margin="6dip">
+	    <TextView 
+	    	android:id="@+id/message" 
+	    	android:text="Message" 
+	    	android:layout_alignParentTop="true"
+	        android:layout_alignParentRight="true"
+	    	android:layout_width="fill_parent" 
+	    	android:layout_height="wrap_content" 
+	    	android:textAppearance="?android:attr/textAppearanceLarge">
+	    </TextView>
+    </ScrollView>
 	
 </RelativeLayout>
